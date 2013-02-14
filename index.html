@@ -1,67 +1,94 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Home by kendo-labs</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">Home</h1>
-        <p class="header">Welcome to Kendo Labs!</p>
-
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/kendo-labs/home/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/kendo-labs/home/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/kendo-labs/home">View On GitHub</a></li>
-        </ul>
-
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/kendo-labs">kendo-labs</a></p>
-
-
-      </header>
-      <section>
-        <h3>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
+<head>
+  <meta charset="utf-8">
+  <title>KendoUI Labs</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="Kendo UI">
+  <link rel="stylesheet" href="stylesheets/styles.css?v=1.0">
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+    <div id="header">
+        <div class="wrapper">
+            <a href="#"><img src="images/logo.png" id="logo" title="Kendo UI" /></a>
+            <ul id="main-nav">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Labs Projects</a></li>
+                <li><a href="#license">License information</a></li>
+                <li><a href="#support">Support</a></li>
+            </ul>
+        </div>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
-  </body>
+    <div id="content">
+    <section id="about">
+        <h1>What is Kendo UI Labs?</h1>
+        <section>
+            <div class="icon"><span class="about"></span></div>
+            <h2>About</h2>
+            <p>You use <a href="http://www.kendoui.com" title="Kendo UI - The Way of HTML5">Kendo UI</a>, but you may not always use JUST Kendo UI in your projects. Maybe you like to use Kendo UI with <a href="http://knockoutjs.com/" title="Knockout JS">Knockout</a>,
+            or Angular.js, or even Backbone. Perhaps you need a widget that's mostly like the Autocomplete, but not quite. Even though most
+            3rd party libraries play just fine with Kendo UI, you may find yourself wishing for more, be it a custom DataSource for Breeze.js or a
+            Kendo UI Widget that combines Autocomplete with a YouTube search. Whatever it may be, Kendo UI Labs is the home for those Kendo UI
+            experiments and integrations. In this organization, you'll find a myriad of sample repositories and integration libraries that we
+            hope you'll find helpful as you build web and hybrid mobile apps using Kendo UI Web, DataViz and Mobile.</p>
+        </section>
+        <section>
+            <div class="icon"><span class="benefits"></span></div>
+            <h2>Benefits</h2>
+            <p>Kendo UI Labs projects are "extensions" to Kendo UI meant to help you stay productive. Though these projects are not officially part of Kendo
+            UI, and therefore not part of the supported product, they do leverage the in-depth knowledge of Kendo UI team members and customers. As such,
+            you can be certain that each project in this organization has been built by people who know and use Kendo UI every day. What's more, because
+            these projects are all open-source, you're more than welcome to get involved and help out if a project doesn't yet fully meet your specific needs.
+            </p>
+        </section>
+        <section>
+            <div class="icon"><span class="getting-started"></span></div>
+            <h2>Getting Started</h2>
+            <p>Each Kendo UI Labs project is designed to provide drop-in capabilities for your apps, support for your development workflow or
+            example implementations of common Kendo UI app patterns. Every repo has its own getting started guide, so feel free to pick a repo
+            or two from the list below and visit the project pages for each to learn more.</p>
+        </section>
+    </section>
+    <section id="projects">
+        <h1>Labs Projects</h1>
+        <p>Labs projects are stewarded by both members of the Kendo UI team and Kendo UI experts from across the community. We want these projects
+            to be useful extensions to Kendo UI for our customers, and your involvement is key. To jump in, just find a repo and fork it or file an
+            issue. For general questions or comments, feel free to contacts on Twitter at <a href="https://twitter.com/kendoui" title="KendoUI on Twitter">@KendoUI</a>. And have fun!</p>
+        <ul>
+            <li>
+                <span class="project-name">Project Name</span> <span class="project-date">Release Date</span> <span class="project-version">Project Version</span> <span class="last-commit">Last Commit</span>
+            </li>
+            <li>
+                <span class="project-name"><a href="#">Project Name</a></span> <span class="project-date">02.02.2012</span> <span class="project-version">2</span> <span class="last-commit">3 hours ago by <a href="http://www.github.com/akorchev">akorchev</a></span>
+            </li>
+            <li>
+                <span class="project-name"><a href="#">Project Name</a></span> <span class="project-date">02.02.2012</span> <span class="project-version">2</span> <span class="last-commit">3 hours ago by <a href="http://www.github.com/akorchev">akorchev</a></span>
+            </li>
+            <li>
+                <span class="project-name"><a href="#">Project Name</a></span> <span class="project-date">02.02.2012</span> <span class="project-version">2</span> <span class="last-commit">3 hours ago by <a href="http://www.github.com/akorchev">akorchev</a></span>
+            </li>
+            <li>
+                <span class="project-name"><a href="#">Project Name</a></span> <span class="project-date">02.02.2012</span> <span class="project-version">2</span> <span class="last-commit">3 hours ago by <a href="http://www.github.com/akorchev">akorchev</a></span>
+            </li>
+        </ul>
+    </section>
+    <section id="license">
+        <h1>License information</h1>
+        <p>Kendo UI Labs projects are all released under a permissive MIT license. This license applies ONLY to the project-specific source of each repository and does not extend to Kendo UI itself, or any other 3rd party libraries used in a repo. For licensing information about Kendo UI, see (License page).</p>
+    </section>
+    <section id="support">
+        <h1>Support</h1>
+        <p> While this organization is supported by Kendo UI, and the projects within are stewarded in part by members of the Kendo UI team, these projects are not covered under the support agreements afforded to Kendo UI commercial and trial license holders. Kendo UI Labs projects do not provide official Kendo UI features and are not to be considered part of any version of Kendo UI (Web, DataViz, Mobile or Complete). As such, these projects are not officially supported by the Kendo UI team. Any and all support requests (via tickets or Forum posts) will be directed to either StackOverflow.com, or to the Issues list for that Kendo UI Labs project. To obtain support or assistance related to any Labs project, please visit <a href="http://stackoverflow.com/questions/tagged/kendo-ui" title="StackOverflow Forums">StackOverflow</a>, or file an issue in the repo in question.</p>
+    </section>
+    </div>
+    <div id="footer">
+        <p><a href="http://www.kendoui.com">Kendo UI framework</a> is developed by <a href="http://www.telerik.com">Telerik</a> - a leading provider of UI components for web, desktop and mobile applications. Trusted by over 100,000 customers worldwide for our devotion to quality and industry-best technical support, Telerik helps professionals maximize their productivity and "deliver more than expected" every day.</p>
+        <p>Copyright &copy; 2011 - 2013 <a href="http://www.telerik.com">Telerik Inc.</a> All rights reserved.</p>
+        <p><a href="http://thenounproject.com/noun/idea/#icon-No762" target="_blank">Idea</a> designed by <a href="http://thenounproject.com/" target="_blank">The Noun Project</a> from The Noun Project</br>
+        <a href="http://thenounproject.com/noun/rocket/#icon-No1172" target="_blank">Rocket</a> designed by <a href="http://thenounproject.com/dawcee" target="_blank">Darcy Alan Patterson</a> Red River College, from The Noun Project</p>
+    </div>
+</body>
 </html>
