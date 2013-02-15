@@ -58,6 +58,7 @@ We're not dogmatic about code style, here, but we do believe that a project shou
 
 - Tab indentation, size of 2
 - Semicolons are nice. Use them
+- Single quotes
 - No trailing whitespace
 - Declare variables at the top of a scope
 - Return early
