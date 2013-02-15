@@ -1,4 +1,2 @@
-kendo-labs
-==========
+**#KENDO LABS BOILERPLATE. CUSTOMIZE FOR YOUR PROJECT**
 
-Repo for gh-pages labs homepage
