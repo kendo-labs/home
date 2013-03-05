@@ -14,7 +14,7 @@
 	ds.read();
 
 	$.get("https://api.github.com/orgs/kendo-labs/repos").done(function(repos) {
-		$.each(repos, function(repo) {
+		$.each(repos, function(index, repo) {
 			var tagsURL, commitsURL;
 			var item = {
 				projectName: repo.name,
