@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width">
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="stylesheets/styles.css?v=1.0">
+    
     <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -69,23 +70,12 @@
                 issue. For general questions or comments, feel free to contacts on Twitter at <a href="https://twitter.com/kendoui" title="KendoUI on Twitter">@KendoUI</a>. And have fun!</p>
         </header>
         <section>
-            <ul>
+            <ul class="headerList">
                 <li>
-                    <span class="project-name">Project Name</span> <span class="project-date">Release Date</span> <span class="project-version">Project Version</span> <span class="last-commit">Last Commit</span>
-                </li>
-                <li>
-                    <span class="project-name"><a href="#">angular-kendo</a></span> <span class="project-date">02.02.2012</span> <span class="project-version">2</span> <span class="last-commit">3 hours ago by <a href="http://www.github.com/akorchev">akorchev</a></span>
-                </li>
-                <li>
-                    <span class="project-name"><a href="#">packaged-app-bootstrap</a></span> <span class="project-date">02.02.2012</span> <span class="project-version">2</span> <span class="last-commit">3 hours ago by <a href="http://www.github.com/akorchev">akorchev</a></span>
-                </li>
-                <li>
-                    <span class="project-name"><a href="#">kendo-snippets</a></span> <span class="project-date">02.02.2012</span> <span class="project-version">2</span> <span class="last-commit">3 hours ago by <a href="http://www.github.com/akorchev">akorchev</a></span>
-                </li>
-                <li>
-                    <span class="project-name"><a href="#">Project Name</a></span> <span class="project-date">02.02.2012</span> <span class="project-version">2</span> <span class="last-commit">3 hours ago by <a href="http://www.github.com/akorchev">akorchev</a></span>
+                    <span class="project-name">Project Name</span> <span class="project-date">Last Release</span> <span class="project-version">Current Version</span> <span class="last-commit">Last Commit</span>
                 </li>
             </ul>
+            <ul id="projectsList"></ul>
         </section>
     </article>
     <article id="license">
@@ -107,5 +97,25 @@
         <p><a href="http://thenounproject.com/noun/idea/#icon-No762" target="_blank">Idea</a> designed by <a href="http://thenounproject.com/" target="_blank">The Noun Project</a> from The Noun Project</br>
         <a href="http://thenounproject.com/noun/rocket/#icon-No1172" target="_blank">Rocket</a> designed by <a href="http://thenounproject.com/dawcee" target="_blank">Darcy Alan Patterson</a> Red River College, from The Noun Project</p>
     </footer>
+
+    <!-- Templates -->
+    <script id="projectItemTemplate" type="text/x-kendo-tmpl">
+        <li>
+            <span class="project-name">
+                <a href="#= projectURL #">#= projectName #</a>
+            </span>
+            <span class="project-date">#= lastRelease #</span>
+            <span class="project-version">#= currentVersion #</span> 
+            <span class="last-commit">#= lastCommitTime # by 
+                <a href="http://www.github.com/#= lastCommitUser #">#= lastCommitUser #</a>
+            </span>
+        </li>
+    </script>
+
+    <!-- Scripts -->
+    <script src="http://cdn.kendostatic.com/2012.3.1315/js/jquery.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2012.3.1315/js/kendo.all.min.js"></script>
+    <script src="javascripts/app.js"></script>
+    
 </body>
 </html>

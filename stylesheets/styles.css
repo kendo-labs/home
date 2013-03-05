@@ -214,7 +214,7 @@ footer {
     #projects ul li {
         border-bottom: 1px solid #ccc;
     }
-    #projects ul li:first-child {
+    #projects ul.headerList li:first-child {
         text-transform: uppercase;
     }
     .project-name {
@@ -231,6 +231,10 @@ footer {
     }
     .last-commit {
         display: inline-block;
+    }
+
+    #projects ul.headerList {
+        margin-bottom: -30px;
     }
     
     /* Footer */
