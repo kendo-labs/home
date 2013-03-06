@@ -25,6 +25,7 @@
 				var tagsURL, commitsURL;
 				var item = {
 					projectName: repo.name,
+					projectDescription: repo.description,
 					projectURL: repo.html_url,
 					lastCommitTime: moment(repo.pushed_at, "YYYY-MM-DDTHH:mm:ssZ").fromNow(),
 					lastRelease: "",

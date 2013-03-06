@@ -72,7 +72,7 @@
         <section>
             <ul class="headerList">
                 <li>
-                    <span class="project-name">Project Name</span> <span class="project-date">Last<br /> Release</span> <span class="project-version">Latest<br/> Version</span> <span class="last-commit">Last Commit</span>
+                    <span class="project-name">Project Name</span> <span class="project-date">Last<br /> Release</span> <span class="project-version">Current<br/> Version</span> <span class="last-commit">Last Commit</span>
                 </li>
             </ul>
             <ul id="projectsList"></ul>
@@ -103,7 +103,8 @@
     <script id="projectItemTemplate" type="text/x-kendo-tmpl">
         <li>
             <span class="project-name">
-                <a href="#= projectURL #">#= projectName #</a>
+                <a href="#= projectURL #" title="#= projectDescription #">#= projectName #</a>
+
             </span>
             <span class="project-date">#= lastRelease #</span>
             <span class="project-version">
