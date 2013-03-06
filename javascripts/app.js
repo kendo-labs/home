@@ -17,7 +17,7 @@
 		url: "https://api.github.com/orgs/kendo-labs/repos", 
 		dataType: "jsonp"
 	}).done(function(repos) {
-			$.each(repos, function(index, repo) {
+			$.each(repos.data, function(index, repo) {
 				var tagsURL, commitsURL;
 				var item = {
 					projectName: repo.name,
@@ -33,21 +33,27 @@
 				tagsURL = trimGitHubURL(repo.tags_url);
 
 				$.ajax({
-					url: commitsURL, 
+					url: commitsURL,
 					dataType: "jsonp"
 				}).done(function(commits) {
-					if (commits.length > 0) {
-						item.lastCommitUser = commits[0].author.login;
+					if (commits.data.length > 0) {
+						item.lastCommitUser = commits.data[0].author.login;
 					}
 
-					$.get(tagsURL, "jsonp").done(function(tags) {
-						if (tags.length > 0) {
-							item.currentVersion = tags[0].name;
-							item.currentVersionURL = tags[0].zipball_url;
+					$.ajax({
+						url: tagsURL,
+						dataType: "jsonp"
+					}).done(function(tags) {
+						if (tags.data.length > 0) {
+							item.currentVersion = tags.data[0].name;
+							item.currentVersionURL = tags.data[0].zipball_url;
 
-							$.get(tags[0].commit.url, "jsonp").done(function(data) {
-								if (data.commit) {
-									item.lastRelease = moment(data.commit.author.date).format("MMMM Do, YYYY");
+							$.ajax({
+								url: tags.data[0].commit.url,
+								dataType: "jsonp"
+							}).done(function(commitData) {
+								if (commitData.data.commit) {
+									item.lastRelease = moment(commitData.data.commit.author.date).format("MMMM Do, YYYY");
 								} else {
 									item.lastRelease = "N/A";
 								}
