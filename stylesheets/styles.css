@@ -236,6 +236,10 @@ footer {
     #projects ul.headerList {
         margin-bottom: -30px;
     }
+
+    #projects ul.headerList {
+        line-height: 1.5em;
+    }
     
     /* Footer */
 

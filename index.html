@@ -72,10 +72,11 @@
         <section>
             <ul class="headerList">
                 <li>
-                    <span class="project-name">Project Name</span> <span class="project-date">Last Release</span> <span class="project-version">Current Version</span> <span class="last-commit">Last Commit</span>
+                    <span class="project-name">Project Name</span> <span class="project-date">Last<br /> Release</span> <span class="project-version">Latest<br/> Version</span> <span class="last-commit">Last Commit</span>
                 </li>
             </ul>
             <ul id="projectsList"></ul>
+            <p><br /> Visit the <a href="http://www.github.com/kendo-labs">Kendo UI Labs Organization</a> (GitHub)</p>
         </section>
     </article>
     <article id="license">
@@ -105,7 +106,13 @@
                 <a href="#= projectURL #">#= projectName #</a>
             </span>
             <span class="project-date">#= lastRelease #</span>
-            <span class="project-version">#= currentVersion #</span> 
+            <span class="project-version">
+                # if (currentVersionURL.length > 0) { #
+                    <a href="#= currentVersionURL #">#= currentVersion #</a>
+                # } else { #
+                   #= currentVersion # 
+                # } #
+            </span> 
             <span class="last-commit">#= lastCommitTime # by 
                 <a href="http://www.github.com/#= lastCommitUser #">#= lastCommitUser #</a>
             </span>
@@ -115,6 +122,7 @@
     <!-- Scripts -->
     <script src="http://cdn.kendostatic.com/2012.3.1315/js/jquery.min.js"></script>
     <script src="http://cdn.kendostatic.com/2012.3.1315/js/kendo.all.min.js"></script>
+    <script src="javascripts/moment.min.js"></script>
     <script src="javascripts/app.js"></script>
     
 </body>
