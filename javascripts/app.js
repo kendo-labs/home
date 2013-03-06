@@ -30,17 +30,17 @@
 				commitsURL = trimGitHubURL(repo.commits_url);
 				tagsURL = trimGitHubURL(repo.tags_url);
 
-				$.get(commitsURL).done(function(commits) {
+				$.get(commitsURL, "jsonp").done(function(commits) {
 					if (commits.length > 0) {
 						item.lastCommitUser = commits[0].author.login;
 					}
 
-					$.get(tagsURL).done(function(tags) {
+					$.get(tagsURL, "jsonp").done(function(tags) {
 						if (tags.length > 0) {
 							item.currentVersion = tags[0].name;
 							item.currentVersionURL = tags[0].zipball_url;
 
-							$.get(tags[0].commit.url).done(function(data) {
+							$.get(tags[0].commit.url, "jsonp").done(function(data) {
 								if (data.commit) {
 									item.lastRelease = moment(data.commit.author.date).format("MMMM Do, YYYY");
 								} else {
