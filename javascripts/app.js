@@ -13,8 +13,10 @@
 	});
 	ds.read();
 
-	$.get("https://api.github.com/orgs/kendo-labs/repos", "jsonp")
-		.done(function(repos) {
+	$.ajax({
+		url: "https://api.github.com/orgs/kendo-labs/repos", 
+		dataType: "jsonp"
+	}).done(function(repos) {
 			$.each(repos, function(index, repo) {
 				var tagsURL, commitsURL;
 				var item = {
