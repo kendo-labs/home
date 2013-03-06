@@ -27,7 +27,6 @@ a:hover {
     text-decoration: underline;
 }
 
-
 .chromeframe {
     margin: 10em 0 0.2em;
     background: #ccc;
@@ -239,6 +238,15 @@ footer {
 
     #projects ul.headerList {
         line-height: 1.5em;
+    }
+
+    .k-listview {
+        position: inherit;
+        border-style: none;
+    }
+
+    .k-widget {
+        background-color: inherit;
     }
     
     /* Footer */
