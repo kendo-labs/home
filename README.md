@@ -8,6 +8,8 @@ Use this section to provide a brief overview of the project. In particular, be s
 
 ## Compatibility and Requirements
 
+[Project Name] was designed to work with Kendo UI [Web/DataViz/Mobile/Complete or a set of Server Wrappers] [And one or more other external projects, like Angular or Backbone]
+
 [Project Name] currently depends on the following libraries:
 
 - [jQuery](http://www.jquery.com) v[VERSION HERE]
