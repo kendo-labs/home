@@ -26,10 +26,10 @@
 				var item = {
 					projectName: repo.name,
 					projectURL: repo.html_url,
+					lastCommitTime: moment(repo.pushed_at, "YYYY-MM-DDTHH:mm:ssZ").fromNow(),
 					lastRelease: "",
 					currentVersion: "",
 					currentVersionURL: "",
-					lastCommitTime: moment(repo.pushed_at, "YYYY-MM-DDTHH:mm:ssZ").fromNow(),
 					lastCommitUser: ""
 				};
 
