@@ -12,9 +12,16 @@
 		dataSource: ds
 	});
 	ds.read();
+	
+	//Create a Kendo Tooltip
+	$("#projectsList").kendoTooltip({ 
+		filter: "a[title]",
+		position: "top",
+		width: 250
+	});
 
 	$.ajax({
-		url: "https://api.github.com/orgs/kendo-labs/repos" + appendAuth(), 
+		url: "https://api.github.com/orgs/kendo-labs/repos" + appendAuth(),
 		dataType: "jsonp"
 	}).done(function(repos) {
 			if (repos.message) {
@@ -70,7 +77,7 @@
 							item.lastRelease = "N/A";
 
 							ds.add(item);
-						}
+						}	
 					});
 				});
 			});
