@@ -13,7 +13,7 @@
 	});
 	ds.read();
 
-	$.get("https://api.github.com/orgs/kendo-labs/repos")
+	$.get("https://api.github.com/orgs/kendo-labs/repos", "jsonp")
 		.done(function(repos) {
 			$.each(repos, function(index, repo) {
 				var tagsURL, commitsURL;
@@ -30,7 +30,10 @@
 				commitsURL = trimGitHubURL(repo.commits_url);
 				tagsURL = trimGitHubURL(repo.tags_url);
 
-				$.get(commitsURL, "jsonp").done(function(commits) {
+				$.ajax({
+					url: commitsURL, 
+					dataType: "jsonp"
+				}).done(function(commits) {
 					if (commits.length > 0) {
 						item.lastCommitUser = commits[0].author.login;
 					}
