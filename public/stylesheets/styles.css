@@ -1,0 +1,374 @@
+html {
+    font: 75% Arial, Helvetica, sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: url('../images/back.gif')repeat left top;
+    background-attachment: fixed;
+}
+
+body, h1, h2, h3, #main-nav, #main-nav li, ul, ul li, p {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #ff7f21;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.chromeframe {
+    margin: 10em 0 0.2em;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* Header */
+
+#header {
+    border-bottom: 1px solid #fff;
+    background-color: #efefef;
+    -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background: -moz-linear-gradient(top,  #e5e5e5 0%, #efefef 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e5e5e5), color-stop(100%,#efefef));
+    background: -webkit-linear-gradient(top,  #e5e5e5) 0%,#efefef 100%);
+    background: -o-linear-gradient(top,  #e5e5e5 0%,#efefef 100%);
+    background: -ms-linear-gradient(top,  #e5e5e5 0%,#efefef 100%);
+    background: linear-gradient(to bottom,  #e5e5e5 0%,#efefef 100%);
+}
+
+#logo {
+    display: inline-block;
+    width: 220px;
+    height: 73px;
+    margin: 20px 0 0 0;
+    border: 0;
+    background: url('../images/logo.png') no-repeat 0 0;
+}
+
+#logo img {
+    display: none;
+}
+
+
+/* Navigation */
+
+nav li a {
+    color: #2e2e2e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+nav li a:hover {
+    color: #ff7f21;
+    text-decoration: none;
+}
+
+nav li a.active {
+    color: #ff7f21;
+    border-bottom: 2px solid #ff7f21;
+}
+
+/* Content */
+
+#content {
+    margin: 0 auto;
+}
+
+#content p, #content ul {
+    font-size: 1.2em;
+    line-height: 1.5em;
+    color: #565656;
+}
+
+.icon {
+    width: 140px;
+    height: 140px;
+    margin: 20px auto 30px;
+    -mox-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    background-color: #fff;
+    -moz-box-shadow: inset 0 0 25px rgba(0,0,0,0.25);
+    -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.25);
+    box-shadow: inset 0 0 25px rgba(0,0,0,0.25);
+    border: 5px solid rgba(0,0,0,0.05);
+}
+
+.about-icon, .benefits-icon, .getting-started-icon {
+    display: block;
+    width: 74px;
+    height: 74px;
+    margin: 35px auto 0;
+    background: url('../images/icons.png') no-repeat 0 0;
+}
+
+.benefits-icon {
+    background: url('../images/icons.png') no-repeat -70px 0;
+}
+
+.getting-started-icon {
+    background: url('../images/icons.png') no-repeat -144px 0;
+}
+
+
+#content > article {
+    background: url('../images/separator.png') no-repeat center 110px;
+}
+
+
+/* About */
+
+#about section p {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+/* Footer */
+
+footer {
+    background-color: #242424;
+    color: #929292;
+    text-align: center;
+    font-size: 0.9em;
+    line-height: 1.3em;
+}
+
+@media only screen and (min-width: 641px), only screen and (min-device-width: 641px) {
+    
+    h1 {
+        font-family: "Segoe UI Light", "Segoe UI", Arial, Helvetica, sans-serif;
+        font-size: 3.6em;
+        font-weight: lighter;
+        color: #2e2e2e;
+        padding-top: 170px;
+        padding-bottom: 30px;
+    }
+    h2 {
+        font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+        font-size: 1.9em;
+        font-weight: bold;
+        color: #4e4e4e;
+    }
+    .wrapper {
+        margin: 0 auto;
+        padding: 0 70px;
+        min-width: 740px;
+        max-width: 1100px;
+    }
+    #header {
+        position: fixed;
+        top: 0;
+        min-width: 100%;
+        height: 110px;
+    }
+    nav {
+        float: right;
+        padding: 48px 0 0 0
+    }
+    nav li {
+        display: inline-block;
+        padding-left: 28px;
+    }
+    nav li a {
+        display: inline-block;
+        padding: 0 2px 1px;
+    }
+    #content {
+        text-align: center;
+        min-width: 960px;
+        max-width: 1160px;
+    }
+    #about section {
+        display: inline-block;
+        width: 33%;
+        min-width: 200px;
+        vertical-align: top;
+    }
+    #about section p {
+        width: 80%;
+    }
+    
+    
+    /* Projects */
+    
+    #projects p, #projects ul, #license p, #support p {
+        max-width: 760px;
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #projects ul {
+        line-height: 3em;
+        padding-top: 30px;
+    }
+    #projects ul li {
+        border-bottom: 1px solid #ccc;
+    }
+    #projects ul.headerList li:first-child {
+        text-transform: uppercase;
+    }
+    .project-name {
+        display: inline-block;
+        width: 250px;
+    }
+    .project-date {
+        display: inline-block;
+        width: 150px;
+    }
+    .project-version {
+        display: inline-block;
+        width: 150px;
+    }
+    .last-commit {
+        display: inline-block;
+    }
+
+    #projects ul.headerList {
+        margin-bottom: -30px;
+    }
+
+    #projects ul.headerList {
+        line-height: 1.5em;
+    }
+
+    .k-listview {
+        position: inherit;
+        border-style: none;
+    }
+
+    .k-widget {
+        background-color: inherit;
+    }
+    
+    /* Footer */
+
+    footer {
+        width: 100%;
+        min-width: 960px;
+        min-height: 150px;
+        margin: 100px 0 0 0;
+        padding: 30px 0;
+    }
+    footer p {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 600px;
+    }
+
+}
+
+@media only screen and (max-width: 640px), only screen and (max-device-width: 640px) {
+    
+    h1 {
+        font-family: "Segoe UI Light", "Segoe UI", Arial, Helvetica, sans-serif;
+        font-size: 2em;
+        font-weight: lighter;
+        color: #2e2e2e;
+        padding: 20px 0 0;
+    }
+    h2 {
+        font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #4e4e4e;
+        padding-top: 10px;
+    }
+    .wrapper {
+        padding: 0 20px;
+        max-width: 600px;
+    }
+    nav {
+        padding: 6px 0 20px 62px;
+    }
+    nav li {
+        padding: 5px 0 0;
+    }
+    nav li a {
+        color: #ff7f21;
+    }
+    nav li a:hover {
+        color: #2e2e2e;
+        text-decoration: none;
+    }
+    #content {
+        padding: 0 20px 20px;
+    }
+    #content > article {
+        background: none;
+    }
+    .icon {
+        display: none;
+    }
+    
+    #projects ul {
+        padding-top: 30px;
+    }
+    
+    #projects ul li {
+        border-bottom: 1px solid #ccc;
+        padding: 5px 0;
+    }
+    #projects ul li:first-child, .project-date, .project-version, .last-commit {
+        display: none;
+    }
+    .project-name {
+        text-transform: capitalize;
+    }
+    
+    /* Footer */
+    
+    footer {
+        margin: 0;
+        padding: 20px;
+        text-align: left;
+    }
+    footer p {
+        max-width: 600;
+    }
+}
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+
+    #logo {
+        background: url('../images/logo@2x.png') no-repeat 0 0;
+        background-size: 220px 73px;
+    }
+    .about-icon, .benefits-icon, .getting-started-icon {
+        background: url('../images/icons@2x.png') no-repeat 2px 0;
+        background-size: 216px 74px;
+    }
+    .benefits-icon {
+        background: url('../images/icons@2x.png') no-repeat -68px 0;
+    }
+    .getting-started-icon {
+        background: url('../images/icons@2x.png') no-repeat -142px 0;
+    }
+}
+
+@media only screen and (min-width: 641px) and (max-width: 1024px), only screen and (min-device-width: 641px) and (max-device-width: 1024px) {
+    
+    #header {
+        position: absolute;
+    }
+    .wrapper {
+        min-width: 820px;
+    }
+}
