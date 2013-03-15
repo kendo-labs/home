@@ -1,16 +1,14 @@
 {
   "name": "kendo-labs-site",
   "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node app"
+  "start": "node app"
   },
   "dependencies": {
     "express": "3.0.0",
     "ejs": "*"
   },
   "engines": {
-    "node": "0.4.7",
-    "npm": "1.0.x"
+    "node": "0.8.x",
+    "npm": "1.1.x"
   }
 }
