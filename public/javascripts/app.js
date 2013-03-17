@@ -1,5 +1,5 @@
 (function($, kendo, moment) {
-	var projectsList, projects, ds, template;
+	var projectList, projects, ds, template;
 
 	projectList = $('#projectsList');
 	projects = [];

@@ -219,7 +219,7 @@ footer {
         padding-top: 30px;
     }
     #projects ul li {
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;        
     }
     #projects ul.headerList li:first-child {
         text-transform: uppercase;
@@ -238,6 +238,9 @@ footer {
     }
     .last-commit {
         display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;    
     }
 
     #projects ul.headerList {
