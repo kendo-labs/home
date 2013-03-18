@@ -13,15 +13,32 @@ github.authenticate({
  */
 
 exports.list = function(req, res){
-	github.user.get({}, function(err, res) {
-	    console.log("GOT ERR?", err);
-	    console.log("GOT RES?", res);
+	github.repos.getFromOrg({
+		org: "kendo-labs",
+		type: "public",
+		sort: "full_name",
+		direction: "asc"
+	}, function(err, data) {
+		var projectsList = [];
+		var i, len;
+		
+		for (i= 0, len=data.length; i < len; i++) {
+			var project = data[i];
 
-	    github.repos.getAll({}, function(err, res) {
-	        console.log("GOT ERR?", err);
-	        console.log("GOT RES?", res);
-	    });
+			var projectObj = {
+				projectName: project.name,
+				projectDescription: project.description,
+				projectURL: project.html_url,
+				lastCommitTime: project.pushed_at,
+				lastRelease: "",
+				currentVersion: "",
+				currentVersionURL: "",
+				lastCommitUser: ""
+			};
+
+			projectsList.push(projectObj);
+		}
+
+		res.json(projectsList);
 	});
-
-  	res.send("respond with a resource");
 };
