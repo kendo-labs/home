@@ -1,6 +1,12 @@
 var GitHubAPI = require('github'),
 	github = new GitHubAPI({ version: "3.0.0" });
 
+var callOpts = {
+	user: 'kendo-labs',
+	repo: '',
+	per_page: 10
+};
+
 github.authenticate({
 	type: "basic",
 	username: "bsatrom",
@@ -21,7 +27,7 @@ exports.list = function(req, res){
 	}, function(err, data) {
 		var projectsList = [];
 		var i, len;
-		
+
 		for (i= 0, len=data.length; i < len; i++) {
 			var project = data[i];
 
@@ -40,5 +46,47 @@ exports.list = function(req, res){
 		}
 
 		res.json(projectsList);
+	});
+};
+
+exports.latestCommit = function(req, res) {
+	callOpts.repo = req.query['project'];
+
+
+	github.repos.getCommits(callOpts, function(err, data) {
+		res.json({ lastCommitUser: data[0].author.login });
+	});
+};
+
+exports.latestRelease = function(req, res) {
+	var response;
+
+	callOpts.repo = req.query['project'];
+
+	github.repos.getTags(callOpts, function(err, data) {
+		if (data.length) {
+			response = {
+				currentVersion: data[0].name,
+				currentVersionURL: data[0].zipball_url,
+				commitSha: data[0].commit.sha
+			};
+		} else {
+			response = { msg: "no tags found" };
+		}
+
+		res.json(response);
+	});
+};
+
+exports.releaseCommit = function(req, res) {
+	var sha = req.query['sha'],
+		project = req.query['project'];
+
+	github.repos.getCommit({
+		user: 'kendo-labs',
+		repo: project,
+		sha: sha
+	}, function(err, data) {
+		res.json({ lastRelease: data.commit.author.date });
 	});
 };

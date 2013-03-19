@@ -12,84 +12,47 @@
 		dataSource: ds
 	});
 	ds.read();
-	
+
 	//Create a Kendo Tooltip
-	$("#projectsList").kendoTooltip({ 
+	$("#projectsList").kendoTooltip({
 		filter: "a[title]",
 		position: "top",
 		width: 250
 	});
 
-	$.ajax({
-		url: "https://api.github.com/orgs/kendo-labs/repos" + appendAuth(),
-		dataType: "jsonp"
-	}).done(function(repos) {
-			if (repos.message) {
-				return;
-			}
-
-			$.each(repos.data, function(index, repo) {
+	$.ajax("/projects")
+		.done(function(repos) {
+			$.each(repos, function(index, repo) {
 				var tagsURL, commitsURL;
 				var item = {
-					projectName: repo.name,
-					projectDescription: repo.description,
-					projectURL: repo.html_url,
-					lastCommitTime: moment(repo.pushed_at, "YYYY-MM-DDTHH:mm:ssZ").fromNow(),
-					lastRelease: "",
-					currentVersion: "",
-					currentVersionURL: "",
-					lastCommitUser: ""
+					projectName: repo.projectName,
+					projectDescription: repo.projectDescription,
+					projectURL: repo.projectURL,
+					lastCommitTime: moment(repo.lastCommitTime, "YYYY-MM-DDTHH:mm:ssZ").fromNow(),
+					lastRelease: "N/A",
+					currentVersion: "N/A",
+					currentVersionURL: "N/A",
+					lastCommitUser: "N/A"
 				};
 
-				commitsURL = trimGitHubURL(repo.commits_url);
-				tagsURL = trimGitHubURL(repo.tags_url);
+				$.ajax("/latestCommit?project=" + item.projectName).done(function (commit) {
+					item.lastCommitUser = commit.lastCommitUser;
 
-				$.ajax({
-					url: commitsURL + appendAuth(),
-					dataType: "jsonp"
-				}).done(function(commits) {
-					if (commits.data.length > 0) {
-						item.lastCommitUser = commits.data[0].author.login;
-					}
+					$.ajax("/latestRelease?project=" + item.projectName).done(function (tag) {
+						if (!tag.msg) {
+							item.currentVersion = tag.currentVersion;
+							item.currentVersionURL = tag.currentVersionURL;
 
-					$.ajax({
-						url: tagsURL + appendAuth(),
-						dataType: "jsonp"
-					}).done(function(tags) {
-						if (tags.data.length > 0) {
-							item.currentVersion = tags.data[0].name;
-							item.currentVersionURL = tags.data[0].zipball_url;
-
-							$.ajax({
-								url: tags.data[0].commit.url + appendAuth(),
-								dataType: "jsonp"
-							}).done(function(commitData) {
-								if (commitData.data.commit) {
-									item.lastRelease = moment(commitData.data.commit.author.date).format("MMMM Do, YYYY");
-								} else {
-									item.lastRelease = "N/A";
-								}
+							$.ajax("/releaseCommit?project=" + item.projectName + "&sha=" + tag.commitSha).done(function(commit) {
+								item.lastRelease = moment(commit.lastRelease).format("MMMM Do, YYYY");
 
 								ds.add(item);
 							});
 						} else {
-							item.currentVersion = "N/A";
-							item.lastRelease = "N/A";
-
 							ds.add(item);
-						}	
+						}
 					});
 				});
 			});
-		}
-	);
-
-	function trimGitHubURL(url) {
-		return url.slice(0, url.indexOf("{"));
-	}
-
-	function appendAuth() {
-		return "?client_id=99037c7dfd5c47cdd24d&client_secret=d2a6d2c157ae1ef17e6c6876f4edb3b1da7f0d15";
-	}
-
+		});
 }($, kendo, moment));
