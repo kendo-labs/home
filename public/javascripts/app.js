@@ -7,11 +7,11 @@
 	ds = new kendo.data.DataSource({ data: projects });
 	template = kendo.template($('#projectItemTemplate').html());
 
-	projectList.kendoListView({
+	/*projectList.kendoListView({
 		template: template,
 		dataSource: ds
 	});
-	ds.read();
+	ds.read();*/
 
 	//Create a Kendo Tooltip
 	$("#projectsList").kendoTooltip({
@@ -20,7 +20,7 @@
 		width: 250
 	});
 
-	$.ajax("/projects")
+	/*$.ajax("/projects")
 		.done(function(repos) {
 			$.each(repos, function(index, repo) {
 				var tagsURL, commitsURL;
@@ -54,5 +54,5 @@
 					});
 				});
 			});
-		});
+		});*/
 }($, kendo, moment));

@@ -238,7 +238,8 @@ footer {
     }
     .project-date {
         display: inline-block;
-        width: 150px;
+        width: 500px;
+        text-overflow: elipsis;
     }
     .project-version {
         display: inline-block;
