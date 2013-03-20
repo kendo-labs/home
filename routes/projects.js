@@ -28,21 +28,23 @@ exports.list = function(req, res){
 		var projectsList = [];
 		var i, len;
 
-		for (i= 0, len=data.length; i < len; i++) {
-			var project = data[i];
+		if (data) {
+			for (i= 0, len=data.length; i < len; i++) {
+				var project = data[i];
 
-			var projectObj = {
-				projectName: project.name,
-				projectDescription: project.description,
-				projectURL: project.html_url,
-				lastCommitTime: project.pushed_at,
-				lastRelease: "",
-				currentVersion: "",
-				currentVersionURL: "",
-				lastCommitUser: ""
-			};
+				var projectObj = {
+					projectName: project.name,
+					projectDescription: project.description,
+					projectURL: project.html_url,
+					lastCommitTime: project.pushed_at,
+					lastRelease: "",
+					currentVersion: "",
+					currentVersionURL: "",
+					lastCommitUser: ""
+				};
 
-			projectsList.push(projectObj);
+				projectsList.push(projectObj);
+			}
 		}
 
 		res.json(projectsList);
