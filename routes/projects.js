@@ -56,7 +56,11 @@ exports.latestCommit = function(req, res) {
 
 
 	github.repos.getCommits(callOpts, function(err, data) {
-		res.json({ lastCommitUser: data[0].author.login });
+		if (data) {
+			res.json({ lastCommitUser: data[0].author.login });
+		} else {
+			res.json([]);
+		}
 	});
 };
 
