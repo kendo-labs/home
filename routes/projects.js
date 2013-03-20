@@ -70,7 +70,7 @@ exports.latestRelease = function(req, res) {
 	callOpts.repo = req.query['project'];
 
 	github.repos.getTags(callOpts, function(err, data) {
-		if (data.length) {
+		if (data) {
 			response = {
 				currentVersion: data[0].name,
 				currentVersionURL: data[0].zipball_url,
