@@ -93,7 +93,7 @@ exports.releaseCommit = function(req, res) {
 		repo: project,
 		sha: sha
 	}, function(err, data) {
-		if (date) {
+		if (data) {
 			res.json({ lastRelease: data.commit.author.date });
 		} else {
 			res.json([]);
