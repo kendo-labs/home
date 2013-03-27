@@ -1,153 +1,179 @@
 var GitHubAPI = require('github'),
-	github = new GitHubAPI({ version: "3.0.0" })
-	request = require('request'),
-	q = require('q');
+  github = new GitHubAPI({ version: "3.0.0" }),
+  q = require('q'),
+  everlive = require('./everlive-push');
 
 github.authenticate({
-	type: "basic",
-	username: "bsatrom",
-	password: "mrwhite"
+  type: "basic",
+  username: "bsatrom",
+  password: "mrwhite"
 
 });
 
 var callOpts = {
-	user: 'kendo-labs',
-	repo: '',
-	per_page: 10
+  user: 'kendo-labs',
+  repo: '',
+  per_page: 10
 };
 
 var projectsList = [];
 
-var baseUrl = "https://api.everlive.com/v1/dmWcmk1OqktZr58u/project"
-
 function getProjects() {
-	var deferred = q.defer();
+  var deferred = q.defer();
 
-	github.repos.getFromOrg({
-		org: "kendo-labs",
-		type: "public",
-		sort: "full_name",
-		direction: "asc"
-	}, function(err, data) {
-		var i, len;
-		if (data) {
-			for (i= 0, len=data.length; i < len; i++) {
-				var project = data[i];
+  github.repos.getFromOrg({
+    org: "kendo-labs",
+    type: "public",
+    sort: "full_name",
+    direction: "asc"
+  }, function(err, data) {
+    var i, len;
 
-				var projectObj = {
-					projectName: project.name,
-					projectDescription: project.description,
-					projectURL: project.html_url,
-					lastCommitTime: project.pushed_at,
-					lastRelease: "",
-					currentVersion: "",
-					currentVersionURL: "",
-					lastCommitUser: "",
-					commitSha: ""
-				};
+    if (!data) {
+      console.log("Error fetching projects: " + err);
+      deferred.reject(new Error(err));
 
-				projectsList.push(projectObj);
-			}
-		}
+      return;
+    }
 
-		deferred.resolve();
-	});
+    for (i= 0, len=data.length; i < len; i++) {
+      var project = data[i];
 
-	return deferred.promise;
+      var projectObj = {
+        projectName: project.name,
+        projectDescription: project.description,
+        projectURL: project.html_url,
+        lastCommitTime: project.pushed_at,
+        lastRelease: "",
+        currentVersion: "",
+        currentVersionURL: "",
+        lastCommitUser: "",
+        commitSha: ""
+      };
+
+      projectsList.push(projectObj);
+    }
+
+    deferred.resolve();
+  });
+
+  console.log("Fetching projects...");
+  return deferred.promise;
+}
+
+function wrapLoop(fn) {
+  var i, len;
+  var deferred = q.defer();
+
+  for (i= 0, len=projectsList.length; i < len; i++) {
+    (function(cntr) {
+      return fn(cntr, len, deferred);
+    })(i);
+  }
+  return deferred.promise;
 }
 
 function getCommitUsers() {
-	var i, len, project;
-	var deferred = q.defer();
+  var count = 0;
 
-	for (i= 0, len=projectsList.length; i < len; i++) {
-		project = projectsList[i];
+  console.log("Fetching user info...");
 
-		callOpts.repo = project.projectName;
-				
-		github.repos.getCommits(callOpts, function(err, data, i, project) {
-			if (data) {
-				project.lastCommitUser = data[0].author.login;
-			}
+  return wrapLoop(function (i, len, deferred) {
+    var project = projectsList[i];
 
-			console.log("Project: " + project.projectName);
+    callOpts.repo = project.projectName;
 
-			console.log("i = " + i + " len = " + len);
-			if (i+1 === len) {
-				console.log("resolving");
-				deferred.resolve();
-			}
-		});
-	}
+    github.repos.getCommits(callOpts, function(err, data) {
+      if (!data) {
+        console.log("Error fetching user info: " + err);
+        deferred.reject(new Error(err));
 
-	return deferred.promise;
+        return;
+      }
+
+      project.lastCommitUser = data[0].author.login;
+
+      count++;
+      if (count === len) {
+        deferred.resolve();
+      }
+    });
+  });
 }
 
 function getTag() {
-	var i, len, project;
-	var deferred = q.defer();
-	
-	for (i= 0, len=projectsList.length; i < len; i++) {
-		project = projectsList[i];
+  var count = 0;
 
-		callOpts.repo = project.projectName;
+  console.log("Fetching tags...");
 
-		github.repos.getTags(callOpts, function(err, data) {
-			var commitSha;
+  return wrapLoop(function (i, len, deferred) {
+    var project = projectsList[i];
 
-			if (data) {
-				project.currentVersion = data[0].name;
-				project.currentVersionURL = data[0].zipball_url;
-				project.commitSha = data[0].commit.sha;
-			}
+    callOpts.repo = project.projectName;
 
-			console.log("TAG: " + project.currentVersion);
+    github.repos.getTags(callOpts, function(err, data) {
+      var commitSha;
 
-			if (i+1 === len) {
-				deferred.resolve();
-			}
-		});
-	}
+      if (!data) {
+        console.log("Error fetching tags: " + err);
+        deferred.reject(new Error(err));
 
-	return deferred.promise;
+        return;
+      }
+
+      project.currentVersion = data[0].name;
+      project.currentVersionURL = data[0].zipball_url;
+      project.commitSha = data[0].commit.sha;
+
+      count++;
+      if (count === len) {
+        deferred.resolve();
+      }
+    });
+  });
 }
 
 function getReleaseCommit() {
-	var i, len, project;
-	var deferred = q.defer();
-	
-	for (i= 0, len=projectsList.length; i < len; i++) {
-		project = projectsList[i];
+  var count = 0;
 
-		github.repos.getCommit({
-			user: 'kendo-labs',
-			repo: project.projectName,
-			sha: project.commitSha
-		}, function(err, data) {
-			if (data) {
-				project.lastRelease = data.commit.author.date;
-			}
+  console.log("Fetching release info...");
 
-			console.log("Release: " + project.lastRelease);
-			if (i+1 === len) {
-				deferred.resolve();
-			}
-		});
-	}
+  return wrapLoop(function (i, len, deferred) {
+    var project = projectsList[i];
 
-	return deferred.promise;
+    github.repos.getCommit({
+      user: 'kendo-labs',
+      repo: project.projectName,
+      sha: project.commitSha
+    }, function(err, data) {
+      if (!data) {
+        console.log("Error fetching release info: " + err);
+        deferred.reject(new Error(err));
+
+        return;
+      }
+
+      project.lastRelease = data.commit.author.date;
+
+      count++;
+      if (count === len) {
+        deferred.resolve();
+      }
+    });
+  });
 }
 
 getProjects().then(function() {
-	return getCommitUsers();
+  return getCommitUsers();
 }).then(function() {
-	return getTag();
+  return getTag();
 }).then(function() {
-	return getReleaseCommit();
+  return getReleaseCommit();
 }).then(function() {
-	console.log("Completed Project Fetch. Obtained " + projectsList.length + " projects");
+  console.log("Completed GitHub Project Fetch. Obtained " + projectsList.length + " projects");
 
-	for (i = 0; i < projectsList.length; i++) {
-		console.log("Last Release: " + projectsList[i].lastRelease);
-	}
+  everlive.saveProjects(projectsList);
+
+}).fail(function(e) {
+  console.log("Error retrieving projects: " + e);
 });
