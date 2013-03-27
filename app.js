@@ -5,7 +5,6 @@
 
 var express = require('express'),
   routes = require('./routes'),
-  projects = require('./routes/projects'),
   http = require('http'),
   path = require('path');
 
@@ -27,10 +26,6 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/projects', projects.list);
-app.get('/latestCommit', projects.latestCommit);
-app.get('/latestRelease', projects.latestRelease);
-app.get('/releaseCommit', projects.releaseCommit);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
