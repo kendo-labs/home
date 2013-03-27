@@ -21,6 +21,7 @@
     width: 250
   });
 
+  $.support.cors = true;
   $.ajax({
     url: everliveBaseUrl,
     type: "GET",
