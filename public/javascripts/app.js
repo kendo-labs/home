@@ -21,10 +21,6 @@
     width: 250
   });
 
-  //Everlive.$.users.login('kendo-labs', 'k3nd0', function(data) {
-  //  alert(JSON.stringify('data'));
-  //});
-
   $.ajax({
     url: everliveBaseUrl,
     type: "GET",
@@ -46,6 +42,7 @@
       });
     },
     error: function(error){
+      // Change to place this message in the list, but not in the ds
       var item = {
         projectName: "Error retrieving project list. Please refresh to try again",
         projectDescription: "",
