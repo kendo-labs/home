@@ -42,19 +42,8 @@
       });
     },
     error: function(error){
-      // Change to place this message in the list, but not in the ds
-      var item = {
-        projectName: "Error retrieving project list. Please refresh to try again",
-        projectDescription: "",
-        projectURL: "",
-        lastCommitTime: "",
-        lastRelease: "",
-        currentVersion: "",
-        currentVersionURL: "",
-        lastCommitUser: ""
-      };
-
-      ds.add(item);
+      $('#dynamicList').addClass('hidden');
+      $('#staticList').removeClass('hidden');
     }
   });
 }($, kendo, moment));

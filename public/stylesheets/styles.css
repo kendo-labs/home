@@ -241,6 +241,11 @@ footer {
         width: 150px;
         text-overflow: elipsis;
     }
+    .project-desc {
+        display: inline-block;
+        width: 500px;
+        text-overflow: elipsis;
+    }
     .project-version {
         display: inline-block;
         width: 150px;
@@ -250,6 +255,10 @@ footer {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;    
+    }
+
+    section.hidden {
+        display: none;
     }
 
     #projects ul.headerList {
