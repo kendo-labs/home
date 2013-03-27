@@ -1,7 +1,6 @@
 (function($, kendo, moment) {
   var projectList, projects, ds, template;
-  var everliveBaseUrl = "https://api.everlive.com/v1/dmWcmk1OqktZr58u/project";
-
+  
   projectList = $('#projectsList');
   projects = [];
 
@@ -21,13 +20,11 @@
     width: 250
   });
 
-  $.support.cors = true;
   $.ajax({
-    url: everliveBaseUrl,
+    url: '/projects',
     type: "GET",
-    headers: { "Authorization" : "MasterKey HG8XTSm93vYyg9P42KxyNyhJVGSJT3e4" },
     success: function(repos){
-      $.each(repos.Result, function(index, repo) {
+      $.each(repos, function(index, repo) {
         var item = {
           projectName: repo.name,
           projectDescription: repo.description,
