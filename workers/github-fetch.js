@@ -114,16 +114,11 @@ function getTag() {
     github.repos.getTags(callOpts, function(err, data) {
       var commitSha;
 
-      if (!data) {
-        console.log("Error fetching tags: " + err);
-        deferred.reject(new Error(err));
-
-        return;
-      }
-
-      project.currentVersion = data[0].name;
-      project.currentVersionURL = data[0].zipball_url;
-      project.commitSha = data[0].commit.sha;
+      if (data.length > 0) {
+        project.currentVersion = data[0].name;
+        project.currentVersionURL = data[0].zipball_url;
+        project.commitSha = data[0].commit.sha;
+      }      
 
       count++;
       if (count === len) {
@@ -141,25 +136,27 @@ function getReleaseCommit() {
   return wrapLoop(function (i, len, deferred) {
     var project = projectsList[i];
 
-    github.repos.getCommit({
-      user: 'kendo-labs',
-      repo: project.projectName,
-      sha: project.commitSha
-    }, function(err, data) {
-      if (!data) {
-        console.log("Error fetching release info: " + err);
-        deferred.reject(new Error(err));
+    if (project.commitSha) {
+      github.repos.getCommit({
+        user: 'kendo-labs',
+        repo: project.projectName,
+        sha: project.commitSha
+      }, function(err, data) {
+        if (!data) {
+          console.log("Error fetching release info: " + err);
+          deferred.reject(new Error(err));
 
-        return;
-      }
+          return;
+        }
 
-      project.lastRelease = data.commit.author.date;
+        project.lastRelease = data.commit.author.date;
 
-      count++;
-      if (count === len) {
-        deferred.resolve();
-      }
-    });
+        count++;
+        if (count === len) {
+          deferred.resolve();
+        }
+      });
+    }
   });
 }
 
