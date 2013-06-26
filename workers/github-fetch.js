@@ -91,9 +91,11 @@ function getCommitUsers() {
         return;
       }
 
-      if (data[0].author) {
-        project.lastCommitUser = data[0].author.login;
-      } 
+      //if (data[0].author) {
+        project.lastCommitUser = data[0].author ? data[0].author.login : data[0].commit.author.name;
+      //} else {
+      //  console.log(data[0]);
+      //}
 
       count++;
       if (count === len) {
