@@ -1,5 +1,5 @@
 var request = require('request');
-var everliveBaseUrl = "https://api.everlive.com/v1/dmWcmk1OqktZr58u/project";
+var everliveBaseUrl = "http://api.everlive.com/v1/dmWcmk1OqktZr58u/project";
 
 function getProjects(callback) {
   request({ 
